@@ -103,21 +103,25 @@ public class Game implements Runnable {
      * Starts all initializations needed to start the game.
      */
     private void init() {
-        // create the display
+        // initialize the game's assets
+        Assets.init();
+        
+        // start the game
+        initItems();
+        
+         // create the display
         display = new Display(getTitle(), getWidth(), getHeight());
         display.getWindow().addKeyListener(getKeyManager());
         display.getWindow().addMouseListener(getMouseManager());
         display.getWindow().addMouseMotionListener(getMouseManager());
         display.getCanvas().addMouseListener(getMouseManager());
         display.getCanvas().addMouseMotionListener(getMouseManager());
-        
+
         // initialize the game's assets
         Assets.init();
         
         // start the game
         initItems();
-        // initialize the game's assets
-        Assets.init();
     }
 
     /**
