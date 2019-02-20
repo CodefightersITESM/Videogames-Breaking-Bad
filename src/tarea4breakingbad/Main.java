@@ -1,4 +1,4 @@
-package tarea3catch;
+package tarea4breakingbad;
 
 /**
  * Main
@@ -14,7 +14,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Game game = new Game("Tarea4 - Breaking Bad", 1080, 800);
+        Game game = new Game("Tarea4 - Breaking Bad", 1080, 600);
         game.start();
     } 
 }

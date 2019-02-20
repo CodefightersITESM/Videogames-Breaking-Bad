@@ -1,4 +1,4 @@
-package tarea3catch;
+package tarea4breakingbad;
 
 import java.awt.Canvas;
 import java.awt.Dimension;

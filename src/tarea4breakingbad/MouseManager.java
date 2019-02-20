@@ -1,4 +1,4 @@
-package tarea3catch;
+package tarea4breakingbad;
 
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
