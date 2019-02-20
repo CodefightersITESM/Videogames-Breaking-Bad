@@ -116,6 +116,8 @@ public class Game implements Runnable {
         
         // start the game
         initItems();
+        // initialize the game's assets
+        Assets.init();
     }
 
     /**
