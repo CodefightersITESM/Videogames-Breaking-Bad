@@ -14,6 +14,7 @@ public class Assets {
     /**
      * Images that will be used by the game.
      */
+    public static BufferedImage background;
     
     /**
      * Audio that will be used by the game.
@@ -23,6 +24,6 @@ public class Assets {
      * Loads all the assets that the game needs.
      */
     public static void init() {
-
+        background = ImageLoader.loadImage("/images/black_background.jpg");
     }
 }
