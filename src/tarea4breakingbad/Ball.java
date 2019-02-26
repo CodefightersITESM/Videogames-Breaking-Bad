@@ -27,8 +27,8 @@ public class Ball extends Item {
     public Ball(int x, int y, int width, int height, Game game) {
         super(x, y, width, height);
         this.game = game;
-        velX = 3;
-        velY = -1;
+        velX = 5;
+        velY = -5;
     }
     
     /**

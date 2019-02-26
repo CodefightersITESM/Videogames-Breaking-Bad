@@ -96,6 +96,9 @@ public abstract class Item {
     }
     
     public boolean intersects(Object obj) {
+        if(this instanceof Player && obj instanceof Ball) {
+            return getRect().intersects(((Item)obj).getRect());       
+        }
         return false;
     }
     

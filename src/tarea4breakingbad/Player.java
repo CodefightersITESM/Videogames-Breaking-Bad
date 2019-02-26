@@ -16,7 +16,7 @@ import java.awt.Graphics;
 public class Player extends Item {
     private Game game;
     
-    public Player(int x, int y, int width, int height, Game game){
+    public Player(int x, int y, int width, int height, Game game) {
         super(x,y,width,height);
         this.game = game;
     }
@@ -28,14 +28,14 @@ public class Player extends Item {
         if(getGame().getKeyManager().isKeyDown(KeyEvent.VK_LEFT)) {
           setX(getX() - 5);  
         }
-        else if (getGame().getKeyManager().isKeyDown(KeyEvent.VK_RIGHT)){
+        else if (getGame().getKeyManager().isKeyDown(KeyEvent.VK_RIGHT)) {
           setX(getX() + 5);  
         }
-        // que no salga de la pantalla
+        // border collisions
         if(getX() + getWidth() >= getGame().getWidth()) {
             setX(getGame().getWidth() - getWidth());
         }
-        else if(getX() <= 0){
+        else if(getX() <= 0) {
            setX(0); 
         }
     }

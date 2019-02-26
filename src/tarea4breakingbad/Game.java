@@ -160,6 +160,26 @@ public class Game implements Runnable {
         ball.update();
         player.update();
         
+        // bounce ball on player
+       if(player.intersects(ball)) {
+           int center = player.getX() + (player.getWidth()/2);
+           int centerBall = ball.getX() + (ball.getWidth()/2);
+           if(ball.getVelX() == 0){
+               ball.setVelX(5);
+           }
+            if (centerBall >= center - 20 && centerBall <= center + 20) {
+                ball.setVelX(0);
+                ball.setVelY(ball.getVelY() * -1);
+            }
+            else if(centerBall < center) {
+                ball.setVelX(Math.abs(ball.getVelX()) * -1);
+                ball.setVelY(ball.getVelY() * -1);
+            }
+            else if(centerBall > center){
+                ball.setVelX(Math.abs(ball.getVelX()));
+                ball.setVelY(ball.getVelY() * -1);
+            }
+        }
         // update input
         getKeyManager().update();
         getMouseManager().update();
