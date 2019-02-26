@@ -98,6 +98,11 @@ public abstract class Item {
     public boolean intersects(Object obj) {
         if(this instanceof Player && obj instanceof Ball) {
             return getRect().intersects(((Item)obj).getRect());       
+        } else if(this instanceof Ball && obj instanceof Block) {
+            Rectangle rect = getRect();
+            rect.width += 2;
+            rect.height += 2;
+            return getRect().intersects(((Item)obj).getRect());       
         }
         return false;
     }

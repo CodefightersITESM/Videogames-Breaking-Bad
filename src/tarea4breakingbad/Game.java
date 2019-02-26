@@ -133,7 +133,7 @@ public class Game implements Runnable {
                 int w = 71;
                 int h = 34;
                 int posX = 45 + w * x;
-                int posY = 30 + h * y;
+                int posY = 60 + h * y;
                 blocks[y][x] = new Block(posX, posY, w, h);
             }
         }
@@ -191,6 +191,27 @@ public class Game implements Runnable {
                 ball.setVelY(ball.getVelY() * -1);
             }
         }
+       
+       // bounce on blocks
+       for(int y = 0; y < 4; y++) {
+           for(int x = 0; x < 10; x++) {
+               Block block = blocks[y][x];
+               int centerX = ball.getX() + ball.getWidth() / 2;
+               int centerY = ball.getY() + ball.getHeight() / 2;
+               if(ball.intersects(block)) {
+                   if(centerY >= block.getY() + block.getHeight() || centerY <= block.getY()) {
+                       ball.setVelY(ball.getVelY() * -1);
+                   } else if(centerX < block.getX() || centerX > block.getX()) {
+                       ball.setVelX(ball.getVelX() * -1);
+                   } else {
+                       if(ball.getVelX() == 0) {
+                           ball.setVelY(ball.getVelY() * -1);
+                       }
+                   }
+               }
+           }
+       }
+       
         // update input
         getKeyManager().update();
         getMouseManager().update();
