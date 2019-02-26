@@ -24,6 +24,6 @@ public class Assets {
      * Loads all the assets that the game needs.
      */
     public static void init() {
-        background = ImageLoader.loadImage("/images/black_background.jpg");
+        background = ImageLoader.loadImage("/images/black_background.png");
     }
 }
