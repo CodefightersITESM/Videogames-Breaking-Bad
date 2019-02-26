@@ -49,6 +49,7 @@ public class Game implements Runnable {
      * The game items.
      */
     private Ball ball;
+    private Player player;
     
     /**
      * Initializes the game object with the desired display properties.
@@ -124,6 +125,7 @@ public class Game implements Runnable {
      */
     private void initItems() {
         ball = new Ball(getWidth() / 2, getHeight() - 20, 9, 9, this);
+        player = new Player(400, 500, 90, 10, this);
     }
     
     /**
@@ -156,6 +158,7 @@ public class Game implements Runnable {
      */
     private void update() {
         ball.update();
+        player.update();
         
         // update input
         getKeyManager().update();
@@ -178,6 +181,7 @@ public class Game implements Runnable {
             g.drawImage(Assets.background, 0, 0, getWidth(), getHeight(), null);
             
             ball.render(g);
+            player.render(g);
             
             // actually render the whole scene
             bs.show();

@@ -26,15 +26,22 @@ public class Player extends Item {
     @Override
     public void update() {
         if(getGame().getKeyManager().isKeyDown(KeyEvent.VK_LEFT)) {
-          setX(getX() - 1);  
+          setX(getX() - 5);  
         }
         else if (getGame().getKeyManager().isKeyDown(KeyEvent.VK_RIGHT)){
-          setX(getX() + 1);  
+          setX(getX() + 5);  
+        }
+        // que no salga de la pantalla
+        if(getX() + getWidth() >= getGame().getWidth()) {
+            setX(getGame().getWidth() - getWidth());
+        }
+        else if(getX() <= 0){
+           setX(0); 
         }
     }
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.player, (getGame().getWidth() - getWidth())/2, 100, 75, 75, null);
+        g.drawImage(Assets.player, getX(), getY(), getWidth(), getHeight(), null);
     }    
 }
