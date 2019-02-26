@@ -16,6 +16,14 @@ public class Ball extends Item {
     private int velX;
     private int velY;
     
+    /**
+     * Creates a new ball object with the desired initial position.
+     * @param x initial x position 
+     * @param y initial y position
+     * @param width width of the image
+     * @param height height of the image
+     * @param game the game this object is running in
+     */
     public Ball(int x, int y, int width, int height, Game game) {
         super(x, y, width, height);
         this.game = game;
@@ -23,26 +31,44 @@ public class Ball extends Item {
         velY = -1;
     }
     
+    /**
+     * @return the game
+     */
     public Game getGame() {
         return game;
     }
     
+    /**
+     * @return the velX
+     */
     public int getVelX() {
         return velX;
     }
     
+    /**
+     * @param velX new velX to set
+     */
     public void setVelX(int velX) {
         this.velX = velX;
     }
     
+    /**
+     * @return the velY
+     */
     public int getVelY() {
         return velY;
     }
     
+    /**
+     * @param velY new velY to set
+     */
     public void setVelY(int velY) {
         this.velY = velY;
     }
     
+    /**
+     * Handles the update per frame of the ball.
+     */
     @Override
     public void update() {
         // bounce on the sides
@@ -60,6 +86,10 @@ public class Ball extends Item {
         setY(getY() + getVelY());
     }
     
+    /**
+     * Handles the rendering per frame of the ball.
+     * @param g the graphics object
+     */
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.ball, getX(), getY(), getWidth(), getHeight(), null);
