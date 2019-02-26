@@ -93,5 +93,5 @@ public class Ball extends Item {
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.ball, getX(), getY(), getWidth(), getHeight(), null);
-    }
+            }
 }
