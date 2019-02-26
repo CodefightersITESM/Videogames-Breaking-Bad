@@ -48,6 +48,7 @@ public class Game implements Runnable {
     /**
      * The game items.
      */
+    private Ball ball;
     
     /**
      * Initializes the game object with the desired display properties.
@@ -122,7 +123,7 @@ public class Game implements Runnable {
      * Creates the items that will be used in the game.
      */
     private void initItems() {
-
+        ball = new Ball(getWidth() / 2, getHeight() - 20, 9, 9, this);
     }
     
     /**
@@ -154,6 +155,8 @@ public class Game implements Runnable {
      * Updates the game every frame.
      */
     private void update() {
+        ball.update();
+        
         // update input
         getKeyManager().update();
         getMouseManager().update();
@@ -173,6 +176,8 @@ public class Game implements Runnable {
             Graphics g = bs.getDrawGraphics();
             g.clearRect(0, 0, getWidth(), getHeight());
             g.drawImage(Assets.background, 0, 0, getWidth(), getHeight(), null);
+            
+            ball.render(g);
             
             // actually render the whole scene
             bs.show();
