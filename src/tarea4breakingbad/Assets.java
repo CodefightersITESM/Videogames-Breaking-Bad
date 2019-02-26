@@ -15,6 +15,8 @@ public class Assets {
      * Images that will be used by the game.
      */
     public static BufferedImage background;
+    public static BufferedImage player;
+    public static BufferedImage ball;
     
     /**
      * Audio that will be used by the game.
@@ -25,5 +27,7 @@ public class Assets {
      */
     public static void init() {
         background = ImageLoader.loadImage("/images/black_background.png");
+        player = ImageLoader.loadImage("/images/player.png");
+        ball = ImageLoader.loadImage("/images/ball.png");
     }
 }
