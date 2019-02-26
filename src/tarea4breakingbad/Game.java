@@ -50,6 +50,7 @@ public class Game implements Runnable {
      */
     private Ball ball;
     private Player player;
+    private Block[][] blocks;
     
     /**
      * Initializes the game object with the desired display properties.
@@ -126,6 +127,16 @@ public class Game implements Runnable {
     private void initItems() {
         ball = new Ball(getWidth() / 2, getHeight() - 20, 9, 9, this);
         player = new Player(400, 500, 90, 10, this);
+        blocks = new Block[4][10];
+        for(int y = 0; y < 4; y++) {
+            for(int x = 0; x < 10; x++) {
+                int w = 71;
+                int h = 34;
+                int posX = 45 + w * x;
+                int posY = 30 + h * y;
+                blocks[y][x] = new Block(posX, posY, w, h);
+            }
+        }
     }
     
     /**
@@ -202,6 +213,11 @@ public class Game implements Runnable {
             
             ball.render(g);
             player.render(g);
+            for(int y = 0; y < 4; y++) {
+                for(int x = 0; x < 10; x++) {
+                    blocks[y][x].render(g);
+                }
+            }
             
             // actually render the whole scene
             bs.show();

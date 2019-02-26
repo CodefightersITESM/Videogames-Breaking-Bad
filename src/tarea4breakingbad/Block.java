@@ -23,6 +23,6 @@ public class Block extends Item{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.block, getX(), getY(), getWidth(), getHeight(), 15, 40, 170, 80, null);
+        g.drawImage(Assets.block, getX(), getY(), getX() + getWidth(), getY() + getHeight(), 6, 16, 77, 50, null);
     }
 }
