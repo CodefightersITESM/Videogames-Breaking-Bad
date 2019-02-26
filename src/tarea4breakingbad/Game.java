@@ -184,7 +184,6 @@ public class Game implements Runnable {
             g.dispose();
         }
     }
-
     /**
      * The main game loop.
      */
