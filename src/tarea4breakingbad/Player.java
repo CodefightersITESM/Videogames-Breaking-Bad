@@ -5,6 +5,7 @@
  */
 package tarea4breakingbad;
 
+import com.sun.glass.events.KeyEvent;
 import java.awt.Graphics;
 
 /**
@@ -19,14 +20,28 @@ public class Player extends Item {
         super(x,y,width,height);
         this.game = game;
     }
-    
+    public Game getGame() {
+        return game;
+    }
     @Override
     public void update() {
-        
+        if(getGame().getKeyManager().isKeyDown(KeyEvent.VK_LEFT)) {
+          setX(getX() - 5);  
+        }
+        else if (getGame().getKeyManager().isKeyDown(KeyEvent.VK_RIGHT)){
+          setX(getX() + 5);  
+        }
+        // que no salga de la pantalla
+        if(getX() + getWidth() >= getGame().getWidth()) {
+            setX(getGame().getWidth() - getWidth());
+        }
+        else if(getX() <= 0){
+           setX(0); 
+        }
     }
 
     @Override
     public void render(Graphics g) {
-    }
-    
+        g.drawImage(Assets.player, getX(), getY(), getWidth(), getHeight(), null);
+    }    
 }
