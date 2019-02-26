@@ -172,6 +172,7 @@ public class Game implements Runnable {
             // clear screen
             Graphics g = bs.getDrawGraphics();
             g.clearRect(0, 0, getWidth(), getHeight());
+            g.drawImage(Assets.background, 0, 0, getWidth(), getHeight(), null);
             
             // actually render the whole scene
             bs.show();
