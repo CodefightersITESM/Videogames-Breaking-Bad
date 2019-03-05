@@ -203,7 +203,8 @@ public class Game implements Runnable {
     /**
      * Updates the game every frame.
      */
-    private void update() {  
+    private void update() {
+      if(getLives() > 0) {
         if(getKeyManager().isKeyPressed(KeyEvent.VK_P)) {
             System.out.println(isPaused() + ", " + (a++));
             setPaused(!isPaused());
@@ -277,8 +278,11 @@ public class Game implements Runnable {
                 }
             }
         }
-        
-        // update input
+      }
+      if(getLives() == 0 && getKeyManager().isKeyPressed(KeyEvent.VK_R)) {
+          restart();
+      }
+       // update input
         getKeyManager().update();
         getMouseManager().update();
     }
@@ -332,6 +336,14 @@ public class Game implements Runnable {
                 g.setFont(new Font("Century Gothic", Font.BOLD, 40));
                 g.drawString("PAUSED", 328, 300);
             }
+            //game over
+            if(getLives() == 0) {
+                g.setColor(new Color(0, 0, 0, 200));
+                g.fillRect(0, 0, getWidth(), getHeight());
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("Century Gothic", Font.BOLD, 40));
+                g.drawString("Press R to restart", 228, 300);
+            }
             
             // actually render the whole scene
             bs.show();
@@ -371,5 +383,11 @@ public class Game implements Runnable {
         
         // once game loop is over, close the game
         stop();
+    }
+    /**
+     * restart.
+     */
+    public void restart(){
+        initItems();
     }
 }
