@@ -15,6 +15,7 @@ public class Ball extends Item {
     private Game game;
     private int velX;
     private int velY;
+    private boolean bottom;
     
     /**
      * Creates a new ball object with the desired initial position.
@@ -27,8 +28,9 @@ public class Ball extends Item {
     public Ball(int x, int y, int width, int height, Game game) {
         super(x, y, width, height);
         this.game = game;
-        velX = 5;
+        velX = 0;
         velY = -5;
+        bottom = true;
     }
     
     /**
@@ -65,6 +67,14 @@ public class Ball extends Item {
     public void setVelY(int velY) {
         this.velY = velY;
     }
+
+    public boolean isBottom() {
+        return bottom;
+    }
+
+    public void setBottom(boolean bottom) {
+        this.bottom = bottom;
+    }
     
     /**
      * Handles the update per frame of the ball.
@@ -76,9 +86,16 @@ public class Ball extends Item {
             setVelX(getVelX() * -1);
         }
         
-        // bounce on the top and bottom
-        if(getY() <= 0 || getY() + getHeight() >= getGame().getHeight()) {
+        // bounce on the top
+        if(getY() <= 0) {
             setVelY(getVelY() * -1);
+        }
+        // bounce on bottom
+        if(getY() + getHeight() >= getGame().getHeight()) {
+            setVelY(getVelY() * -1);
+            setVelX(0);
+            getGame().setLives(getGame().getLives() - 1);
+            setBottom(true);
         }
         
         // update position
@@ -93,5 +110,5 @@ public class Ball extends Item {
     @Override
     public void render(Graphics g) {
         g.drawImage(Assets.ball, getX(), getY(), getWidth(), getHeight(), null);
-            }
+    }
 }

@@ -142,8 +142,8 @@ public class Game implements Runnable {
      * Creates the items that will be used in the game.
      */
     private void initItems() {
-        ball = new Ball(getWidth() / 2, getHeight() - 60, 9, 9, this);
-        player = new Player(400, 500, 100, 50, this);
+        player = new Player((getWidth()/ 2) - 50, 500, 100, 50, this);
+        ball = new Ball(player.getX() + 45, player.getY() - 10, 9, 9, this);
         blocks = new Block[4][7];
         lives = 3;
         int tempY = 40;
@@ -192,9 +192,20 @@ public class Game implements Runnable {
     /**
      * Updates the game every frame.
      */
-    private void update() {
-        ball.update();
-        player.update();
+    private void update() {     
+        if(ball.isBottom()) {
+            ball.setX(player.getX() + 45);
+            ball.setY(player.getY() - 10);
+            player.setX((getWidth()/ 2) - 50);
+            player.setY(500);
+            if(getKeyManager().isKeyPressed(KeyEvent.VK_SPACE)) {
+                ball.setBottom(false);
+            }
+        }
+        else {
+            ball.update();
+            player.update();
+        }
         
         // bounce ball on player
        if(player.intersects(ball)) {
@@ -202,11 +213,11 @@ public class Game implements Runnable {
            int centerBall = ball.getX() + (ball.getWidth()/2);
            
            double percent = Math.abs((centerBall - player.getX()) / (double)(player.getWidth()));
-           System.out.println(percent);
+           //System.out.println(percent);
            double angle = Math.toRadians(180 * percent);
            int newVelX = (int)Math.round(Math.cos(angle) * 6);
            int newVelY = (int)Math.round(Math.sin(angle) * 6);
-           System.out.println(newVelX + ", " + newVelY);
+           //System.out.println(newVelX + ", " + newVelY);
            
            if(newVelY <= 0) {
                newVelX = 1;
@@ -244,7 +255,6 @@ public class Game implements Runnable {
                 }
             }
         }
-       
         // update input
         getKeyManager().update();
         getMouseManager().update();
