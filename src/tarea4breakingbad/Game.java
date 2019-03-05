@@ -298,7 +298,12 @@ public class Game implements Runnable {
                     g.drawImage(Assets.barrel, 20 + (i * 40 + (i * 10)), 550, 40, 40, null);
                 }
             }
-            
+            // string space
+            if(ball.isBottom()) {
+                g.setColor(Color.GREEN);
+                g.setFont(new Font("American Typewriter", Font.BOLD, 30));
+                g.drawString("Press space to shoot ball", 200, 400);
+            }
             // actually render the whole scene
             bs.show();
             g.dispose();
