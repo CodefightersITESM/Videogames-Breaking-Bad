@@ -330,7 +330,7 @@ public class Game implements Runnable {
                 g.fillRect(0, 0, getWidth(), getHeight());
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Century Gothic", Font.BOLD, 40));
-                g.drawString("PAUSED", 320, 300);
+                g.drawString("PAUSED", 328, 300);
             }
             
             // actually render the whole scene
