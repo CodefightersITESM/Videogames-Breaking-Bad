@@ -222,7 +222,8 @@ public class Game implements Runnable {
             for(int y = 0; y < 4; y++) {
                 for(int x = 0; x < 7; x++) {
                     Block block = blocks[y][x];
-                    if(block.getLives() == 0) {
+                    block.update();
+                    if(block.isDead()) {
                         continue;
                     }
                     int centerX = ball.getX() + ball.getWidth() / 2;
@@ -268,7 +269,7 @@ public class Game implements Runnable {
             player.render(g);
             for(int y = 0; y < 4; y++) {
                 for(int x = 0; x < 7; x++) {
-                    if(blocks[y][x].getLives() == 0) {
+                    if(blocks[y][x].isDead()) {
                         continue;
                     }
                     blocks[y][x].render(g);
