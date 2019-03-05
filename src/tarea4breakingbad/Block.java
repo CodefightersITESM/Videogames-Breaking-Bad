@@ -5,11 +5,7 @@
  */
 package tarea4breakingbad;
 
-<<<<<<< Updated upstream
 import java.awt.AlphaComposite;
-=======
-import java.awt.Color;
->>>>>>> Stashed changes
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
