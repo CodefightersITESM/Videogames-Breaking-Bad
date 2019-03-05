@@ -13,10 +13,21 @@ import java.awt.Graphics;
  */
 public class Block extends Item{    
 
+    private int lives;
+    private Ball ball;
+    
     public Block(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+    
     @Override
     public void update() {
     }
