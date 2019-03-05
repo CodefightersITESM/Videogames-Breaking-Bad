@@ -209,22 +209,26 @@ public class Game implements Runnable {
         
         // bounce ball on player
        if(player.intersects(ball)) {
-           int center = player.getX() + (player.getWidth()/2);
-           int centerBall = ball.getX() + (ball.getWidth()/2);
-           
-           double percent = Math.abs((centerBall - player.getX()) / (double)(player.getWidth()));
-           //System.out.println(percent);
-           double angle = Math.toRadians(180 * percent);
-           int newVelX = (int)Math.round(Math.cos(angle) * 6);
-           int newVelY = (int)Math.round(Math.sin(angle) * 6);
-           //System.out.println(newVelX + ", " + newVelY);
-           
-           if(newVelY <= 0) {
-               newVelX = 1;
+           if(ball.getY() <= player.getY()) {
+                int center = player.getX() + (player.getWidth()/2);
+                int centerBall = ball.getX() + (ball.getWidth()/2);
+
+                double percent = Math.abs((centerBall - player.getX()) / (double)(player.getWidth()));
+                if(percent >= 1.0) {
+                    percent = 1.0;
+                }
+                double angle = Math.toRadians(180 * percent);
+                int newVelX = (int)Math.round(Math.cos(angle) * 6);
+                int newVelY = (int)Math.round(Math.sin(angle) * 6);
+                //System.out.println(newVelX + ", " + newVelY);
+
+                if(newVelY <= 0) {
+                    newVelX = 1;
+                }
+
+                ball.setVelX(newVelX * -1);
+                ball.setVelY(Math.abs(newVelY) * -1);
            }
-           
-           ball.setVelX(newVelX * -1);
-           ball.setVelY(Math.abs(newVelY) * -1);
         }
        
        // bounce on blocks

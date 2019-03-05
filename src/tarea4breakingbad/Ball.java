@@ -29,7 +29,7 @@ public class Ball extends Item {
         super(x, y, width, height);
         this.game = game;
         velX = 0;
-        velY = -5;
+        velY = -6;
         bottom = true;
     }
     
@@ -92,7 +92,7 @@ public class Ball extends Item {
         }
         // bounce on bottom
         if(getY() + getHeight() >= getGame().getHeight()) {
-            setVelY(getVelY() * -1);
+            setVelY(-6);
             setVelX(0);
             getGame().setLives(getGame().getLives() - 1);
             setBottom(true);
