@@ -53,6 +53,11 @@ public class Game implements Runnable {
     private Block[][] blocks;
     
     /**
+     * The game timers
+     */
+    private Timer collisionTimer;
+    
+    /**
      * Initializes the game object with the desired display properties.
      * @param title
      * @param width
@@ -142,6 +147,8 @@ public class Game implements Runnable {
             }
             tempY += 30;
         }
+        
+        collisionTimer = new Timer(0.05d);
     }
     
     /**
@@ -198,24 +205,28 @@ public class Game implements Runnable {
         }
        
        // bounce on blocks
-       for(int y = 0; y < 4; y++) {
-           for(int x = 0; x < 7; x++) {
-               Block block = blocks[y][x];
-               int centerX = ball.getX() + ball.getWidth() / 2;
-               int centerY = ball.getY() + ball.getHeight() / 2;
-               if(ball.intersects(block)) {
-                   if(centerY >= block.getY() + block.getHeight() || centerY <= block.getY()) {
-                       ball.setVelY(ball.getVelY() * -1);
-                   } else if(centerX < block.getX() || centerX > block.getX()) {
-                       ball.setVelX(ball.getVelX() * -1);
-                   } else {
-                       if(ball.getVelX() == 0) {
-                           ball.setVelY(ball.getVelY() * -1);
-                       }
-                   }
-               }
-           }
-       }
+       collisionTimer.update();
+       if(collisionTimer.isActivated()) {
+            for(int y = 0; y < 4; y++) {
+                for(int x = 0; x < 7; x++) {
+                    Block block = blocks[y][x];
+                    int centerX = ball.getX() + ball.getWidth() / 2;
+                    int centerY = ball.getY() + ball.getHeight() / 2;
+                    if(ball.intersects(block)) {
+                        if(centerY >= block.getY() + block.getHeight() || centerY <= block.getY()) {
+                            ball.setVelY(ball.getVelY() * -1);
+                        } else if(centerX < block.getX() || centerX > block.getX()) {
+                            ball.setVelX(ball.getVelX() * -1);
+                        } else {
+                            if(ball.getVelX() == 0) {
+                                ball.setVelY(ball.getVelY() * -1);
+                            }
+                        }
+                        collisionTimer.restart();
+                    }
+                }
+            }
+        }
        
         // update input
         getKeyManager().update();
