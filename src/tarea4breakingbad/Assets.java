@@ -27,7 +27,7 @@ public class Assets {
      * Loads all the assets that the game needs.
      */
     public static void init() {
-        background = ImageLoader.loadImage("/images/black_background.png");
+        background = ImageLoader.loadImage("/images/op1.png");
         player = ImageLoader.loadImage("/images/player.png");
         ball = ImageLoader.loadImage("/images/ball.png");
         block = ImageLoader.loadImage("/images/pill.png");
