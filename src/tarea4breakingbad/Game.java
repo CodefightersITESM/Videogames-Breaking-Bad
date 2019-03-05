@@ -53,6 +53,8 @@ public class Game implements Runnable {
     private Ball ball;
     private Player player;
     private Block[][] blocks;    
+    private boolean paused;
+    
     /**
      * The game timers
      */
@@ -119,6 +121,14 @@ public class Game implements Runnable {
         this.lives = lives;
     }
     
+    public boolean isPaused() {
+        return paused;
+    }
+    
+    public void setPaused(boolean paused) {
+        this.paused = paused;
+    }
+    
     /**
      * Starts all initializations needed to start the game.
      */
@@ -161,7 +171,7 @@ public class Game implements Runnable {
             tempY += 30;
         }
         
-        collisionTimer = new Timer(0.05d);
+        collisionTimer = new Timer(0.04d);
     }
     
     /**
@@ -189,76 +199,85 @@ public class Game implements Runnable {
         }
     }
 
+    int a = 0;
     /**
      * Updates the game every frame.
      */
-    private void update() {     
-        if(ball.isBottom()) {
-            ball.setX(player.getX() + 45);
-            ball.setY(player.getY() - 10);
-            player.setX((getWidth()/ 2) - 50);
-            player.setY(500);
-            if(getKeyManager().isKeyPressed(KeyEvent.VK_SPACE)) {
-                ball.setBottom(false);
-            }
-        }
-        else {
-            ball.update();
-            player.update();
+    private void update() {  
+        if(getKeyManager().isKeyPressed(KeyEvent.VK_P)) {
+            System.out.println(isPaused() + ", " + (a++));
+            setPaused(!isPaused());
         }
         
-        // bounce ball on player
-       if(player.intersects(ball)) {
-           if(ball.getY() <= player.getY()) {
-                int center = player.getX() + (player.getWidth()/2);
-                int centerBall = ball.getX() + (ball.getWidth()/2);
-
-                double percent = Math.abs((centerBall - player.getX()) / (double)(player.getWidth()));
-                if(percent >= 1.0) {
-                    percent = 1.0;
+        if(!isPaused()) {
+            if(ball.isBottom()) {
+                ball.setX(player.getX() + 45);
+                ball.setY(player.getY() - 10);
+                player.setX((getWidth()/ 2) - 50);
+                player.setY(500);
+                if(getKeyManager().isKeyPressed(KeyEvent.VK_SPACE)) {
+                    ball.setBottom(false);
                 }
-                double angle = Math.toRadians(180 * percent);
-                int newVelX = (int)Math.round(Math.cos(angle) * 6);
-                int newVelY = (int)Math.round(Math.sin(angle) * 6);
-                //System.out.println(newVelX + ", " + newVelY);
+            }
+            else {
+                ball.update();
+                player.update();
+            }
 
-                if(newVelY <= 0) {
-                    newVelX = 1;
-                }
+            // bounce ball on player
+           if(player.intersects(ball)) {
+               if(ball.getY() <= player.getY()) {
+                    int center = player.getX() + (player.getWidth()/2);
+                    int centerBall = ball.getX() + (ball.getWidth()/2);
 
-                ball.setVelX(newVelX * -1);
-                ball.setVelY(Math.abs(newVelY) * -1);
-           }
-        }
-       
-       // bounce on blocks
-       collisionTimer.update();
-       if(collisionTimer.isActivated()) {
-            for(int y = 0; y < 4; y++) {
-                for(int x = 0; x < 7; x++) {
-                    Block block = blocks[y][x];
-                    block.update();
-                    if(block.isDead()) {
-                        continue;
+                    double percent = Math.abs((centerBall - player.getX()) / (double)(player.getWidth()));
+                    if(percent >= 1.0) {
+                        percent = 1.0;
                     }
-                    int centerX = ball.getX() + ball.getWidth() / 2;
-                    int centerY = ball.getY() + ball.getHeight() / 2;
-                    if(ball.intersects(block)) {
-                        if(centerY >= block.getY() + block.getHeight() || centerY <= block.getY()) {
-                            ball.setVelY(ball.getVelY() * -1);
-                        } else if(centerX < block.getX() || centerX > block.getX()) {
-                            ball.setVelX(ball.getVelX() * -1);
-                        } else {
-                            if(ball.getVelX() == 0) {
-                                ball.setVelY(ball.getVelY() * -1);
-                            }
+                    double angle = Math.toRadians(180 * percent);
+                    int newVelX = (int)Math.round(Math.cos(angle) * 6);
+                    int newVelY = (int)Math.round(Math.sin(angle) * 6);
+                    //System.out.println(newVelX + ", " + newVelY);
+
+                    if(newVelY <= 0) {
+                        newVelX = 1;
+                    }
+
+                    ball.setVelX(newVelX * -1);
+                    ball.setVelY(Math.abs(newVelY) * -1);
+               }
+            }
+
+           // bounce on blocks
+           collisionTimer.update();
+           if(collisionTimer.isActivated()) {
+                for(int y = 0; y < 4; y++) {
+                    for(int x = 0; x < 7; x++) {
+                        Block block = blocks[y][x];
+                        block.update();
+                        if(block.isDead()) {
+                            continue;
                         }
-                        collisionTimer.restart();
-                        block.setLives(block.getLives() - 1);
+                        int centerX = ball.getX() + ball.getWidth() / 2;
+                        int centerY = ball.getY() + ball.getHeight() / 2;
+                        if(ball.intersects(block)) {
+                            if(centerY >= block.getY() + block.getHeight() || centerY <= block.getY()) {
+                                ball.setVelY(ball.getVelY() * -1);
+                            } else if(centerX < block.getX() || centerX > block.getX()) {
+                                ball.setVelX(ball.getVelX() * -1);
+                            } else {
+                                if(ball.getVelX() == 0) {
+                                    ball.setVelY(ball.getVelY() * -1);
+                                }
+                            }
+                            collisionTimer.restart();
+                            block.setLives(block.getLives() - 1);
+                        }
                     }
                 }
             }
         }
+        
         // update input
         getKeyManager().update();
         getMouseManager().update();
@@ -300,10 +319,20 @@ public class Game implements Runnable {
             }
             // string space
             if(ball.isBottom()) {
-                g.setColor(Color.GREEN);
+                g.setColor(new Color(20, 255, 20));
                 g.setFont(new Font("American Typewriter", Font.BOLD, 30));
-                g.drawString("Press space to shoot ball", 200, 400);
+                g.drawString("Press space to shoot ball", 216, 440);
             }
+            
+            // render paused screen
+            if(isPaused()) {
+                g.setColor(new Color(0, 0, 0, 200));
+                g.fillRect(0, 0, getWidth(), getHeight());
+                g.setColor(Color.WHITE);
+                g.setFont(new Font("American Typewriter", Font.BOLD, 40));
+                g.drawString("PAUSED", 320, 300);
+            }
+            
             // actually render the whole scene
             bs.show();
             g.dispose();

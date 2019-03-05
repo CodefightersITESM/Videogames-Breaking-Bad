@@ -38,6 +38,8 @@ public class KeyManager implements KeyListener {
         keysInUse.add(KeyEvent.VK_LEFT);
         keysInUse.add(KeyEvent.VK_DOWN);
         keysInUse.add(KeyEvent.VK_RIGHT);
+        keysInUse.add(KeyEvent.VK_P);
+        keysInUse.add(KeyEvent.VK_SPACE);
     }
 
     /**
