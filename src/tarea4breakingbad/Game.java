@@ -50,12 +50,15 @@ public class Game implements Runnable {
      */
     private Ball ball;
     private Player player;
-    private Block[][] blocks;
-    
+    private Block[][] blocks;    
     /**
      * The game timers
      */
     private Timer collisionTimer;
+    /**
+     * Game lives
+     */
+    private int lives;
     /**
      * Initializes the game object with the desired display properties.
      * @param title
@@ -105,6 +108,14 @@ public class Game implements Runnable {
     public MouseManager getMouseManager() {
         return mouseManager;
     }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
     
     /**
      * Starts all initializations needed to start the game.
@@ -129,9 +140,10 @@ public class Game implements Runnable {
      * Creates the items that will be used in the game.
      */
     private void initItems() {
-        ball = new Ball(getWidth() / 2, getHeight() - 20, 9, 9, this);
+        ball = new Ball(getWidth() / 2, getHeight() - 60, 9, 9, this);
         player = new Player(400, 500, 100, 50, this);
         blocks = new Block[4][7];
+        lives = 3;
         int tempY = 40;
         for(int y = 0; y < 4; y++) {
             int tempX = 55;
@@ -259,6 +271,13 @@ public class Game implements Runnable {
                         continue;
                     }
                     blocks[y][x].render(g);
+                }
+            }
+            if(lives != 0) {
+                int width = Assets.barrel.getWidth();
+                for(int i = 0; i < getLives(); i++) {
+                    g.drawImage(Assets.barrel, 30 + (i * Assets.barrel.getWidth() + (i * 10)), 530, width, 50, null);
+
                 }
             }
             

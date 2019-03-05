@@ -18,6 +18,7 @@ public class Assets {
     public static BufferedImage player;
     public static BufferedImage ball;
     public static BufferedImage block;
+    public static BufferedImage barrel;
     
     /**
      * Audio that will be used by the game.
@@ -31,5 +32,6 @@ public class Assets {
         player = ImageLoader.loadImage("/images/calzon.png");
         ball = ImageLoader.loadImage("/images/ball.png");
         block = ImageLoader.loadImage("/images/pill.png");
+        barrel = ImageLoader.loadImage("/images/barril.png");
     }
 }
