@@ -1,8 +1,10 @@
 package tarea4breakingbad;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
@@ -198,21 +200,20 @@ public class Game implements Runnable {
        if(player.intersects(ball)) {
            int center = player.getX() + (player.getWidth()/2);
            int centerBall = ball.getX() + (ball.getWidth()/2);
-           if(ball.getVelX() == 0){
-               ball.setVelX(5);
+           
+           double percent = Math.abs((centerBall - player.getX()) / (double)(player.getWidth()));
+           System.out.println(percent);
+           double angle = Math.toRadians(180 * percent);
+           int newVelX = (int)Math.round(Math.cos(angle) * 6);
+           int newVelY = (int)Math.round(Math.sin(angle) * 6);
+           System.out.println(newVelX + ", " + newVelY);
+           
+           if(newVelY <= 0) {
+               newVelX = 1;
            }
-            if (centerBall >= center - 20 && centerBall <= center + 20) {
-                ball.setVelX(0);
-                ball.setVelY(ball.getVelY() * -1);
-            }
-            else if(centerBall < center) {
-                ball.setVelX(Math.abs(ball.getVelX()) * -1);
-                ball.setVelY(ball.getVelY() * -1);
-            }
-            else if(centerBall > center){
-                ball.setVelX(Math.abs(ball.getVelX()));
-                ball.setVelY(ball.getVelY() * -1);
-            }
+           
+           ball.setVelX(newVelX * -1);
+           ball.setVelY(Math.abs(newVelY) * -1);
         }
        
        // bounce on blocks
@@ -273,11 +274,13 @@ public class Game implements Runnable {
                     blocks[y][x].render(g);
                 }
             }
+            
+            AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f);
+            ((Graphics2D)g).setComposite(ac);
+            
             if(lives != 0) {
-                int width = Assets.barrel.getWidth();
                 for(int i = 0; i < getLives(); i++) {
-                    g.drawImage(Assets.barrel, 30 + (i * Assets.barrel.getWidth() + (i * 10)), 530, width, 50, null);
-
+                    g.drawImage(Assets.barrel, 20 + (i * 40 + (i * 10)), 550, 40, 40, null);
                 }
             }
             
