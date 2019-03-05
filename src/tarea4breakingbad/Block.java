@@ -41,6 +41,10 @@ public class Block extends Item{
         return dead;
     }
     
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+    
     @Override
     public void update() {
         if(getLives() <= 0) {
