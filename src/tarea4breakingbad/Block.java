@@ -5,7 +5,9 @@
  */
 package tarea4breakingbad;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 /**
  *
@@ -35,6 +37,10 @@ public class Block extends Item{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.block, getX(), getY(), getX() + getWidth(), getY() + getHeight(), 6, 16, 77, 50, null);
+        Graphics2D g2d = (Graphics2D)g;
+        float alpha = 1.0f;
+        AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha);
+        g2d.setComposite(ac);
+        g2d.drawImage(Assets.block, getX(), getY(), getX() + getWidth(), getY() + getHeight(), 6, 16, 77, 50, null);
     }
 }
