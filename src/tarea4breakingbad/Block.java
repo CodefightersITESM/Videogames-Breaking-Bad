@@ -18,6 +18,7 @@ public class Block extends Item{
     
     public Block(int x, int y, int width, int height) {
         super(x, y, width, height);
+        lives = 2;
     }
 
     public int getLives() {

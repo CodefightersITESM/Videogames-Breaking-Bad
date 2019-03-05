@@ -56,7 +56,6 @@ public class Game implements Runnable {
      * The game timers
      */
     private Timer collisionTimer;
-    
     /**
      * Initializes the game object with the desired display properties.
      * @param title
@@ -210,6 +209,9 @@ public class Game implements Runnable {
             for(int y = 0; y < 4; y++) {
                 for(int x = 0; x < 7; x++) {
                     Block block = blocks[y][x];
+                    if(block.getLives() == 0) {
+                        continue;
+                    }
                     int centerX = ball.getX() + ball.getWidth() / 2;
                     int centerY = ball.getY() + ball.getHeight() / 2;
                     if(ball.intersects(block)) {
@@ -223,6 +225,7 @@ public class Game implements Runnable {
                             }
                         }
                         collisionTimer.restart();
+                        block.setLives(block.getLives() - 1);
                     }
                 }
             }
@@ -252,6 +255,9 @@ public class Game implements Runnable {
             player.render(g);
             for(int y = 0; y < 4; y++) {
                 for(int x = 0; x < 7; x++) {
+                    if(blocks[y][x].getLives() == 0) {
+                        continue;
+                    }
                     blocks[y][x].render(g);
                 }
             }
