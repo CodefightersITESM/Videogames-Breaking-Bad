@@ -28,7 +28,7 @@ public class Assets {
      */
     public static void init() {
         background = ImageLoader.loadImage("/images/op1.png");
-        player = ImageLoader.loadImage("/images/player.png");
+        player = ImageLoader.loadImage("/images/calzon.png");
         ball = ImageLoader.loadImage("/images/ball.png");
         block = ImageLoader.loadImage("/images/pill.png");
     }

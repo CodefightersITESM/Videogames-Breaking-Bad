@@ -20,7 +20,7 @@ public class Block extends Item{
     
     public Block(int x, int y, int width, int height) {
         super(x, y, width, height);
-        lives = 2;
+        lives = 3;
     }
 
     public int getLives() {
@@ -39,6 +39,12 @@ public class Block extends Item{
     public void render(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
         float alpha = 1.0f;
+        if(getLives() == 2){
+            alpha = 0.5f;
+        }
+        else if(getLives() == 1){
+            alpha = 0.3f;
+        }
         AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER,alpha);
         g2d.setComposite(ac);
         g2d.drawImage(Assets.block, getX(), getY(), getX() + getWidth(), getY() + getHeight(), 6, 16, 77, 50, null);

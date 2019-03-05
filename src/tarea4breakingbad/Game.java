@@ -130,7 +130,7 @@ public class Game implements Runnable {
      */
     private void initItems() {
         ball = new Ball(getWidth() / 2, getHeight() - 20, 9, 9, this);
-        player = new Player(400, 500, 90, 10, this);
+        player = new Player(400, 500, 100, 50, this);
         blocks = new Block[4][7];
         int tempY = 40;
         for(int y = 0; y < 4; y++) {
