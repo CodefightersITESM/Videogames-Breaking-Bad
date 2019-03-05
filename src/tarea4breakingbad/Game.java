@@ -127,15 +127,20 @@ public class Game implements Runnable {
     private void initItems() {
         ball = new Ball(getWidth() / 2, getHeight() - 20, 9, 9, this);
         player = new Player(400, 500, 90, 10, this);
-        blocks = new Block[4][10];
+        blocks = new Block[4][7];
+        int tempY = 40;
         for(int y = 0; y < 4; y++) {
-            for(int x = 0; x < 10; x++) {
+            int tempX = 55;
+            for(int x = 0; x < 7; x++) {
                 int w = 71;
                 int h = 34;
-                int posX = 45 + w * x;
-                int posY = 60 + h * y;
+                int posX = tempX + w * x;
+                int posY = tempY + h * y;
                 blocks[y][x] = new Block(posX, posY, w, h);
+                
+                tempX += 30;
             }
+            tempY += 30;
         }
     }
     
@@ -194,7 +199,7 @@ public class Game implements Runnable {
        
        // bounce on blocks
        for(int y = 0; y < 4; y++) {
-           for(int x = 0; x < 10; x++) {
+           for(int x = 0; x < 7; x++) {
                Block block = blocks[y][x];
                int centerX = ball.getX() + ball.getWidth() / 2;
                int centerY = ball.getY() + ball.getHeight() / 2;
@@ -235,7 +240,7 @@ public class Game implements Runnable {
             ball.render(g);
             player.render(g);
             for(int y = 0; y < 4; y++) {
-                for(int x = 0; x < 10; x++) {
+                for(int x = 0; x < 7; x++) {
                     blocks[y][x].render(g);
                 }
             }
