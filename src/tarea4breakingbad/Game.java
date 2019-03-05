@@ -320,7 +320,7 @@ public class Game implements Runnable {
             // string space
             if(ball.isBottom()) {
                 g.setColor(new Color(20, 255, 20));
-                g.setFont(new Font("American Typewriter", Font.BOLD, 30));
+                g.setFont(new Font("Century Gothic", Font.BOLD, 30));
                 g.drawString("Press space to shoot ball", 216, 440);
             }
             
@@ -329,7 +329,7 @@ public class Game implements Runnable {
                 g.setColor(new Color(0, 0, 0, 200));
                 g.fillRect(0, 0, getWidth(), getHeight());
                 g.setColor(Color.WHITE);
-                g.setFont(new Font("American Typewriter", Font.BOLD, 40));
+                g.setFont(new Font("Century Gothic", Font.BOLD, 40));
                 g.drawString("PAUSED", 320, 300);
             }
             
