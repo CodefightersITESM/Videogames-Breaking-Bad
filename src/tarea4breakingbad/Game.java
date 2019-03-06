@@ -212,7 +212,6 @@ public class Game implements Runnable {
     private void update() {
       if(getLives() > 0) {
         if(getKeyManager().isKeyPressed(KeyEvent.VK_P)) {
-            System.out.println(isPaused() + ", " + (a++));
             setPaused(!isPaused());
         }
 
@@ -243,8 +242,6 @@ public class Game implements Runnable {
                     double angle = Math.toRadians(180 * percent);
                     int newVelX = (int) Math.round(Math.cos(angle) * 6);
                     int newVelY = (int) Math.round(Math.sin(angle) * 6);
-                    //System.out.println(newVelX + ", " + newVelY);
-
                     if (newVelY <= 0) {
                         newVelX = 1;
                     }
@@ -341,7 +338,7 @@ public class Game implements Runnable {
 
             // render paused screen
             if (isPaused()) {
-                g.setColor(new Color(0, 0, 0, 200));
+                g.setColor(new Color(0, 0, 0, 100));
                 g.fillRect(0, 0, getWidth(), getHeight());
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Century Gothic", Font.BOLD, 40));
@@ -350,7 +347,7 @@ public class Game implements Runnable {
             
             //game over
             if(getLives() == 0) {
-                g.setColor(new Color(0, 0, 0, 200));
+                g.setColor(new Color(0, 0, 0, 100));
                 g.fillRect(0, 0, getWidth(), getHeight());
                 g.setColor(Color.WHITE);
                 g.setFont(new Font("Century Gothic", Font.BOLD, 40));
