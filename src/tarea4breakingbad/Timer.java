@@ -4,8 +4,8 @@ package tarea4breakingbad;
  * Timer
  * 
  * Makes reacting to events based on time easier to manage.
- * @author Cesar Barraza
- * Date 30/Jan/2019
+ * @author Cesar Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
  * @version 1.0
  */
 public class Timer {

@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
  * Assets
  * 
  * Helper class to manage all the assets that the game will use.
- * @author César Barraza A01176786
- * Date 30/Jan/2019
+ * @author César Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
  * @version 1.0
  */
 public class Assets {
@@ -23,6 +23,8 @@ public class Assets {
     /**
      * Audio that will be used by the game.
      */
+    public static SoundClip bounceClip;
+    public static SoundClip breakClip;
     
     /**
      * Loads all the assets that the game needs.
@@ -33,5 +35,7 @@ public class Assets {
         ball = ImageLoader.loadImage("/images/ball.png");
         block = ImageLoader.loadImage("/images/pill.png");
         barrel = ImageLoader.loadImage("/images/barril.png");
+        bounceClip = new SoundClip("/audio/bounce.wav");
+        breakClip = new SoundClip("/audio/break.wav");
     }
 }

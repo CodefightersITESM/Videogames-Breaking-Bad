@@ -9,7 +9,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  * Display
  * Object that handles a JFrame window for the game.
  *
- * @author César Barraza A01176786
+ * @author César Barraza A01176786, Isabel Cruz A01138741
  * Date 30/Jan/2019
  * @version 1.0
  */

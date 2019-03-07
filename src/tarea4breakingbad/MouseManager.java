@@ -9,7 +9,7 @@ import java.awt.event.MouseMotionListener;
  * MouseManager
  * 
  * Listens for mouse events such as released and pressed buttons.
- * @author César Barraza A01176786
+ * @author César Barraza A01176786, Isabel Cruz A01138741
  * Date 07/Feb/2019
  * @version 1.0
  */

@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * KeyManager
  * 
  * Listens for keyboard events such as released and pressed keys.
- * @author César Barraza A01176786
- * Date 30/Jan/2019
+ * @author César Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
  * @version 1.0
  */
 public class KeyManager implements KeyListener {

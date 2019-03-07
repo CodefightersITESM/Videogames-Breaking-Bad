@@ -6,8 +6,8 @@ import java.util.Random;
  * Utility
  * 
  * Helper class that provides utility methods.
- * @author Cesar Barraza
- * Date 08/Feb/2019
+ * @author Cesar Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
  * @version 1.0
  */
 public class Util {

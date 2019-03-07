@@ -12,8 +12,8 @@ import java.net.URL;
  * SoundClip
  * 
  * Represents playable audio.
- * @author César Barraza
- * Date 07/Feb/2019
+ * @author César Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
  * @version 1.0
  */
 public class SoundClip {
@@ -128,6 +128,7 @@ public class SoundClip {
     /** 
      * Metodo que carga el archivo de sonido.
      * @param audiofile es un <code>String</code> con el nombre del archivo de sonido.
+     * @return 
      */
     public boolean load(String audiofile) {
         try {

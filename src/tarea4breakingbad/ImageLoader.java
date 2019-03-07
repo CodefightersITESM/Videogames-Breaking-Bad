@@ -8,8 +8,8 @@ import javax.imageio.ImageIO;
  * ImageLoader
  * 
  * Simplifies loading local assets for the game.
- * @author César Barraza A01176786
- * Date 30/Jan/2019
+ * @author César Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
  * @version 1.0
  */
 public class ImageLoader {

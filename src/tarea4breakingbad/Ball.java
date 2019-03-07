@@ -1,20 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package tarea4breakingbad;
 
 import java.awt.Graphics;
 
 /**
- *
- * @author Cesar Barraza
+ * Ball
+ * 
+ * Represents the ball that bounces in the game.
+ * @author César Barraza A01176786, Isabel Cruz A01138741
+ * Date 6/Mar/2019
+ * @version 1.0
  */
 public class Ball extends Item {
-    private Game game;
+    /**
+     * Game object of the running game.
+     */
+        private Game game;
+
+    
+    /**
+     * Velocity of the ball
+     */
     private int velX;
     private int velY;
+    
+    /**
+     * Determines if the ball is at the bottom ready to be shot.
+     */
     private boolean bottom;
     
     /**
@@ -68,10 +79,16 @@ public class Ball extends Item {
         this.velY = velY;
     }
 
+    /**
+     * @return the bottom
+     */
     public boolean isBottom() {
         return bottom;
     }
 
+    /**
+     * @param bottom new bottom to set
+     */
     public void setBottom(boolean bottom) {
         this.bottom = bottom;
     }

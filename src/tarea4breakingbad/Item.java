@@ -7,7 +7,7 @@ import java.awt.Rectangle;
  * Item
  * 
  * Defines a template for any in-game entity.
- * @author César Barraza
+ * @author César Barraza A01176786, Isabel Cruz A01138741
  * Date 30/Jan/2019
  * @version 1.0
  */
@@ -24,6 +24,8 @@ public abstract class Item {
      * Creates an entity at the specified position.
      * @param x coordinate
      * @param y coordinate
+     * @param width the width
+     * @param height the height
      */
     public Item(int x, int y, int width, int height) {
         this.x = x;
@@ -95,6 +97,11 @@ public abstract class Item {
         return new Rectangle(x, y, width, height);
     }
     
+    /**
+     * Determines if this item intersects with another item, and acts accordingly.
+     * @param obj the other item that could intersect with this item
+     * @return whether or not the items intersect
+     */
     public boolean intersects(Object obj) {
         if(this instanceof Player && obj instanceof Ball) {
             return getRect().intersects(((Item)obj).getRect());       

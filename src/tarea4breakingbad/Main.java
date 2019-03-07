@@ -4,7 +4,7 @@ package tarea4breakingbad;
  * Main
  * 
  * The driver class that holds the Main method to start the game.
- * @author César Barraza
+ * @author César Barraza A01176786, Isabel Cruz A01138741
  * Date 30/Jan/2019
  * @version 1.0
  */
